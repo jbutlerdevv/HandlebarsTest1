@@ -35,3 +35,18 @@ footer {
 #submit-button {
   padding: 25px;
 }
+
+
+.register {
+  display: none;
+}
+
+.app-forms {
+  border: outset lightslategray 5px;
+  max-width: 325px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 45px;
+  color: white;
+  border-radius: 25px;
+}

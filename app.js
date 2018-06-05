@@ -12,26 +12,24 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 8080);
 
 app.get('/', (req, res) => {
-  res.render('login')
+  res.render('home')
 })
-
-/*
-app.get('/register', (req, res) => {
-  res.render('register')
+app.get('/home', (req, res) => {
+  res.render('home')
 })
 app.get('/beer-wine', (req, res) => {
   res.render('beer-wine')
 })
 app.get('/create', (req, res) => {
   res.render('create')
-})
+}) 
 app.get('/liquor', (req, res) => {
   res.render('liquor')
 })
-app.get('/miscellaneous', (req, res) => {
-  res.render('miscellaneous')
+app.get('/misc', (req, res) => {
+  res.render('misc')
 })
-*/
+
 
 
 app.listen(8080, () => {
