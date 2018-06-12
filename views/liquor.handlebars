@@ -1,4 +1,4 @@
-<form class="product-data" action="submit" method="post">    
+<form class="product-data" action="/liquor" method="post">    
   <table class="table table-hover table-responsive table-bordered">
     <thead>
       <th><h3>PRODUCT</h3></th>
@@ -6,23 +6,50 @@
       <th><h3>Begin Inv.</h3></th>
       <th><h3>End Inv.</h3></th>
       <th><h3>End Cost</h3></th>
-      <th><h3>Profit</h3></th>
     </thead>
-    <tr>
-      <th></th>
-    </tr>
-    <tr>
-      <td></td>
-      <td><input type="text"/></td>
-      <td><input type="text"/></td>
-      <td><input type="text"/></td>
-      <td><input type="text"/></td>
-      <td><input type="text"/></td>
-    </tr>
+    <tbody>
+      {{#each liquors as |liquor|}}
+      <tr class="item">
+	      <td>{{liquor.product_name}}</td>
+	      <td class="unitCost">{{liquor.unit_cost}}</td>
+	      <td class="beginInv calc"><input type="number"></td>
+	      <td class="endInv calc"><input type="number"></td>
+	      <td class="endCost"><span></span></td>
+      </tr>
+      {{/each}}
+      <tr>
+        <td><h4>Total Liquor Cost: </h4></td>
+      </tr>
+    </tbody>
   </table>
-    <div id="submit-button">
+  <div id="submit-button">
       <button type="submit" class="btn btn-primary">
           <span class="glyphicon glyphicon-plus"></span>Submit
       </button>
     </div>
-</form>        
+</form>
+
+{{#extend "js"}}
+<script>
+	$(document).on('keyup change', '.calc', calcRows);
+	function calcRows() {
+		$('.item').each(() => {
+			var unitCost = 0;
+			var beginInv = 0;
+			var endInv = 0;
+			var endCost = 0;
+			if(!isNaN(parseFloat($(this).parent().find('.beginInv input').val()))) {
+				beginInv = parseFloat($(this).parent().find('.beginInv input').val());
+			}
+			if(!isNaN(parseFloat($(this).parent().find('.endInv input').val()))) {
+				endInv = parseFloat($(this).parent().find('.endInv input').val());
+			}
+			if(!isNaN(parseFloat($(this).parent().find('.unitCost').text()))) {
+				unitCost = parseFloat($(this).parent().find('.unitCost').text());
+			}
+			endCost = (beginInv - endInv) * unitCost;
+			$(this).parent().find('.endCost span').text(endCost.toFixed(2));
+		});
+	}
+</script>
+{{/extend}}

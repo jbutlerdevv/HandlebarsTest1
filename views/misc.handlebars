@@ -1,4 +1,4 @@
-<form action="submit" method="post">    
+<form class="product-data" action="/liquor" method="post">    
   <table class="table table-hover table-responsive table-bordered">
     <thead>
       <th><h3>PRODUCT</h3></th>
@@ -8,10 +8,23 @@
       <th><h3>End Cost</h3></th>
       <th><h3>Profit</h3></th>
     </thead>
+    <tr>
+      <td>{{name}}</td>
+      <td>{{unitcost}}</td>
+      <td><input type="text"/></td>
+      <td><input type="text"/></td>
+      <td>{{endCost}}</td>
+      <td>{{profit}}</td>
+    </tr>
   </table>
     <div id="submit-button">
       <button type="submit" class="btn btn-primary">
           <span class="glyphicon glyphicon-plus"></span>Submit
       </button>
+    </div>
+    <div>
+      
+        <li>{{liquor}}</li>
+      
     </div>
 </form>        
